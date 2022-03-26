@@ -1,6 +1,9 @@
 interface ConfigDefinition {
     host: string
     port: number
+    auth: {
+        jwtSecret: any
+    }
     https: {
         enabled: boolean
         key?: string
