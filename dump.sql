@@ -31,7 +31,8 @@ CREATE TABLE public.expenses (
     currency character varying(10),
     user_id uuid,
     date_created timestamp without time zone,
-    status character varying(100)
+    status character varying(100),
+    CONSTRAINT uuid PRIMARY KEY (id),
 );
 
 
@@ -46,7 +47,8 @@ CREATE TABLE public.users (
     first_name character varying(100),
     last_name character varying(100),
     company_name character varying(255),
-    ssn character varying(32)
+    ssn character varying(32),
+    CONSTRAINT uuid PRIMARY KEY (id),
 );
 
 
