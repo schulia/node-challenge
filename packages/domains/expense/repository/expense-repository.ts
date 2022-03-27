@@ -1,6 +1,6 @@
 import express from 'express';
-import { PrismaClient } from '@prisma/client';
 import { Expense } from '../types';
+import { PrismaClient } from '@prisma/client';
 import { BadRequest, InternalError, NotFound } from '@nc/utils/errors';
 
 const prisma = new PrismaClient();
@@ -28,52 +28,25 @@ export async function findById(expenseId): Promise<Expense> {
   return rawExpense;
 }
 
-export async function findByConditions(conditions) {
-  console.log(conditions)
+export async function findByConditions(conditions, pageOptions) {
+  const { merchant_name, status, currency } = conditions;
+  const { skip, take } = pageOptions;
+
   const rawExpenses = await prisma.expenses.findMany({
-    skip: Number(conditions.skip),
-    take: Number(conditions.take),
+    skip,
+    take,
     where: {
-      merchant_name: conditions.merchant_name,
-      status: conditions.status,
-      currency: conditions.currency,
-      date_created: conditions.date
+      merchant_name,
+      status,
+      currency,
     },
     orderBy: {
-      date_created: 'desc'
-    }
-  });
-
-  console.log(rawExpenses);
-  if (!rawExpenses) {
-    throw NotFound(`Could not find expenses with conditions ${conditions}`);
-  }
-
-  if (rawExpenses.error) {
-    throw InternalError(rawExpenses.error);
-  }
-
-  return rawExpenses;
-}
-
-export async function findByDateInterval(dates) {
-  const dateBegin = dates.dateBegin;
-  const dateEnd = dates.dateEnv;
-
-  if (!dates) {
-    throw BadRequest('condition property is missing.');
-  }
-
-  const rawExpenses = await prisma.expenses.findMany({
-    where: { 
-      merchant_name: merchant,
-      status: status,
-      currency: currency
+      date_created: 'desc',
     },
   });
 
   if (!rawExpenses) {
-    throw NotFound(`Could not find expense with id ${expenseId}`);
+    throw NotFound(`Could not find expenses with conditions ${conditions}`);
   }
 
   if (rawExpenses.error) {
