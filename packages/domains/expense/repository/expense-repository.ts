@@ -10,7 +10,7 @@ app.use(express.json());
 
 export async function findById(expenseId): Promise<Expense> {
   if (!expenseId) {
-    throw BadRequest('userId property is missing.');
+    throw BadRequest('expenseId property is missing.');
   }
 
   const rawExpense = await prisma.expenses.findUnique({
@@ -45,8 +45,9 @@ export async function findByConditions(conditions, pageOptions) {
     },
   });
 
-  if (!rawExpenses) {
-    throw NotFound(`Could not find expenses with conditions ${conditions}`);
+
+  if (rawExpenses.length === 0) {
+    throw NotFound(`Could not find expenses with given conditions`);
   }
 
   if (rawExpenses.error) {
