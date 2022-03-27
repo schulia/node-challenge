@@ -45,9 +45,8 @@ export async function findByConditions(conditions, pageOptions) {
     },
   });
 
-
   if (rawExpenses.length === 0) {
-    throw NotFound(`Could not find expenses with given conditions`);
+    throw NotFound('Could not find expenses with given conditions');
   }
 
   if (rawExpenses.error) {

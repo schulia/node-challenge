@@ -9,7 +9,7 @@ router.get('/expense/:expenseId', async (req, res, next) => {
   const [expenseError, expenseDetails] = await to(getExpenseById(req.params.expenseId));
 
   if (expenseError) {
-    return next(new ApiError(expenseError, expenseError.status, `Could not get expense details: ${expenseError}`, expenseError.title, req));
+    return next(new ApiError(expenseError, expenseError.status, `Could not get expense details: ${expenseError.message}`, expenseError.title, req));
   }
 
   if (!expenseDetails) {
@@ -23,11 +23,7 @@ router.get('/expenses', async (req, res, next) => {
   const [expenseError, expensesDetails] = await to(getExpenseFiltered(req.query));
 
   if (expenseError) {
-    return next(new ApiError(expenseError, expenseError.status, `Could not get expense details: ${expenseError}`, expenseError.title, req));
-  }
-
-  if (!expensesDetails) {
-    return res.json({});
+    return next(new ApiError(expenseError, expenseError.status, `Could not get expense details: ${expenseError.message}`, expenseError.title, req));
   }
 
   return res.json(expensesDetails);
