@@ -29,22 +29,22 @@ export async function findById(expenseId): Promise<Expense> {
 }
 
 export async function findByConditions(conditions) {
-  const merchant = conditions.merchant
-  const status = conditions.status
-  const currency = conditions.currency
-
-  if (!merchant && !status && !currency) {
-    throw BadRequest('condition property is missing.');
-  }
-
+  console.log(conditions)
   const rawExpenses = await prisma.expenses.findMany({
+    skip: Number(conditions.skip),
+    take: Number(conditions.take),
     where: {
-      merchant_name: merchant,
-      status: status,
-      currency: currency
+      merchant_name: conditions.merchant_name,
+      status: conditions.status,
+      currency: conditions.currency,
+      date_created: conditions.date
     },
+    orderBy: {
+      date_created: 'desc'
+    }
   });
 
+  console.log(rawExpenses);
   if (!rawExpenses) {
     throw NotFound(`Could not find expenses with conditions ${conditions}`);
   }
