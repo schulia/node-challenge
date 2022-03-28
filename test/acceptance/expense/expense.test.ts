@@ -17,7 +17,7 @@ describe('Expenses API test', () => {
     expect(response.status).toBe(400);
   });
 
-  test('Get with non existing filter condition', async () => {
+  test('Get with non existing value', async () => {
     const response = await Api.get('/expense/v1/expenses?merchant_name=pumpkin_pie');
     expect(response.status).toBe(404);
   });

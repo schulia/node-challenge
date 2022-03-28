@@ -29,7 +29,7 @@ export async function findById(expenseId: string): Promise<Expense> {
 }
 
 export async function findByConditions(conditions, pageOptions): Promise<Expense[]> {
-  const { merchant_name, status, currency } = conditions;
+  const { merchant_name, status, currency, user_id } = conditions;
   const { skip, take } = pageOptions;
 
   const rawExpenses = await prisma.expenses.findMany({
@@ -39,6 +39,7 @@ export async function findByConditions(conditions, pageOptions): Promise<Expense
       merchant_name,
       status,
       currency,
+      user_id
     },
     orderBy: {
       date_created: 'desc',
