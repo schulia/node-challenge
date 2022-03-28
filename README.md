@@ -17,10 +17,11 @@ example:
 
 ## About the challenge completion 
 
--> For the expense domain structure I went back and forth on how to organize the project,but mainly focused on separating business logic from external calls from db access. 
--> My initial take was to test everything writing simple queries on the code, I then added an  ORM to better support that and make it easier for following implementations.
--> At first I tried Sequelize, but I was not finding the documentation to be as helpful, after some research I decided to go with Prisma. On Prisma queries values that are marked as 'undefined' are not taking into consideration, I thought this to be benefitial for a multiple filtering need.
--> After the configuration was set it was mainly a matter of implementing the endpoints and it's specific characteristics and then organizing the code structure a little better.
+-> For the expense domain structure I went back and forth on how to organize the project,but mainly focused on separating business logic from external calls from db access.   
+-> My initial take was to test everything writing simple queries on the code, I then added an  ORM to better support that and make it easier for following implementations.  
+-> At first I tried Sequelize, but I was not finding the documentation to be as helpful, after some research I decided to go with Prisma. On Prisma queries values that are marked as 'undefined' are not taking into consideration, I thought this to be benefitial for a multiple filtering need.  
+-> After the configuration was set it was mainly a matter of implementing the endpoints and it's specific characteristics and then organizing the code structure a little better.  
 -> At the end of the day I started writing some tests and I noticed some things that were missing and adjusted them
-
+  
+    
 My main point was to make sure the project was easy to understand and to work with, if there is ever a need for a person to add features to it. 
