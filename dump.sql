@@ -25,14 +25,13 @@ SET default_with_oids = false;
 --
 
 CREATE TABLE public.expenses (
-    id uuid,
+    id uuid PRIMARY KEY,
     merchant_name character varying(255),
     amount_in_cents integer,
     currency character varying(10),
     user_id uuid,
     date_created timestamp without time zone,
-    status character varying(100),
-    CONSTRAINT uuid PRIMARY KEY (id),
+    status character varying(100)
 );
 
 
@@ -43,12 +42,11 @@ CREATE TABLE public.expenses (
 --
 
 CREATE TABLE public.users (
-    id uuid,
+    id uuid PRIMARY KEY,
     first_name character varying(100),
     last_name character varying(100),
     company_name character varying(255),
-    ssn character varying(32),
-    CONSTRAINT uuid PRIMARY KEY (id),
+    ssn character varying(32)
 );
 
 

@@ -39,7 +39,7 @@ export async function findByConditions(conditions, pageOptions): Promise<Expense
       merchant_name,
       status,
       currency,
-      user_id
+      user_id,
     },
     orderBy: {
       date_created: 'desc',
