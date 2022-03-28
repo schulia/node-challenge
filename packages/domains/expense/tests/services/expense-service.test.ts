@@ -1,9 +1,9 @@
 import { getExpenseFiltered } from '../../services/expense-service';
-import { findByConditions } from '../../repository/expense-repository';
+import { findByConditions } from '../../data/expense-db';
 import { to } from '@nc/utils/async';
 
-jest.mock('../../repository/expense-repository', () => {
-  const originalModule = jest.requireActual('../../repository/expense-repository');
+jest.mock('../../data/expense-db', () => {
+  const originalModule = jest.requireActual('../../data/expense-db');
 
   return {
     findByConditions: jest.fn(() => 'expense'),

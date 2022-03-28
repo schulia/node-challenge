@@ -12,10 +12,6 @@ router.get('/expense/:expenseId', async (req, res, next) => {
     return next(new ApiError(expenseError, expenseError.status, `Could not get expense details: ${expenseError.message}`, expenseError.title, req));
   }
 
-  if (!expenseDetails) {
-    return res.json({});
-  }
-
   return res.json(expenseDetails);
 });
 

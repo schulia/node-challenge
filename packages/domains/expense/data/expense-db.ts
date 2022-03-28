@@ -8,7 +8,7 @@ const app = express();
 
 app.use(express.json());
 
-export async function findById(expenseId): Promise<Expense> {
+export async function findById(expenseId: string): Promise<Expense> {
   if (!expenseId) {
     throw BadRequest('expenseId property is missing.');
   }
@@ -28,7 +28,7 @@ export async function findById(expenseId): Promise<Expense> {
   return rawExpense;
 }
 
-export async function findByConditions(conditions, pageOptions) {
+export async function findByConditions(conditions, pageOptions): Promise<Expense[]> {
   const { merchant_name, status, currency } = conditions;
   const { skip, take } = pageOptions;
 

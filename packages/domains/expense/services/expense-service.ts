@@ -1,16 +1,12 @@
 import { to } from '@nc/utils/async';
-import { findByConditions, findById } from '../repository/expense-repository';
+import { findByConditions, findById } from '../data/expense-db';
 import { BadRequest } from '@nc/utils/errors';
 
 export async function getExpenseById(expenseId) {
   const [expenseError, expenseDetails] = await to(findById(expenseId));
 
   if (expenseError) {
-    return expenseError;
-  }
-
-  if (!expenseDetails) {
-    return;
+    throw expenseError;
   }
 
   return expenseDetails;
@@ -29,7 +25,7 @@ export async function getExpenseFiltered(filters) {
   const [expenseError, expenses] = await to(findByConditions(filters, pageOptions));
 
   if (expenseError) {
-    return expenseError;
+    throw expenseError;
   }
 
   return expenses;
